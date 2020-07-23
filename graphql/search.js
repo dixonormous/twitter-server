@@ -3,14 +3,12 @@ const { Twitter } = require('graphqlhub-schemas');
 const { GraphQLSchema, graphql } = require('graphql');
 const axios = require('axios');
 
-let topic;
-
 let schema = new GraphQLSchema({
   query: Twitter.QueryObjectType
 });
 
 const search = (req, res) => {
-  let topic = req.body.topic;
+  let { topic } = req.body;
 
   let query =  `
     {
