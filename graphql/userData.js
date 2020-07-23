@@ -9,7 +9,7 @@ let schema = new GraphQLSchema({
 
 let query = `
 {
-  user (identifier: name, identity: "clayallsopp") {
+  user (identifier: name, identity: "reactjs") {
     created_at
     description
     id
@@ -29,32 +29,12 @@ let query = `
       },
     }
   }
-  tweet(id: "687433440774459392") {
-  text,
-  retweets(limit: 2) {
-    id,
-    retweeted_status {
-      id
-    }
-    user {
-      screen_name
-    }
-  }
-}
-search(q: "Javascript", count: 1, result_type: mixed) {
-  user {
-    screen_name
-  }
-  id
-  text
-}
 }`;
-//
 
-const getData = (req, res) => {
+const getUserData = (req, res) => {
   graphql(schema, query).then(({ data }) => {
     res.send(data)
   });
 };
 
-module.exports = { getData }
+module.exports = { getUserData }
